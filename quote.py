@@ -37,6 +37,8 @@ def get_random_quote(num_lines=3):
             continue
         if "you might also like" in l_lower:
             continue
+        if "lyrics" in l_lower:
+            continue
         if "embed" == l_lower:
             continue
         
