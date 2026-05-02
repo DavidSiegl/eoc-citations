@@ -44,6 +44,8 @@ def get_random_quote(num_lines=3):
             continue
         if l_lower.startswith("refrain"):
             continue
+        if l_lower.startswith("strophe"):
+            continue
 
         filtered_lines.append(l)
 
