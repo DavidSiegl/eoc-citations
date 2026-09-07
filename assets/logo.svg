@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none" role="img" aria-label="hyprmuse">
+  <path d="M15 9 H25 L20.5 24 H12 Z" fill="#E5B455"/>
+  <path d="M30 9 H40 L35.5 24 H27 Z" fill="#E5B455"/>
+  <rect x="12" y="32" width="40" height="5" rx="2.5" fill="#45D0E0"/>
+  <rect x="12" y="41" width="30" height="5" rx="2.5" fill="#45D0E0"/>
+  <rect x="12" y="50" width="18" height="5" rx="2.5" fill="#8B7BF7"/>
+</svg>

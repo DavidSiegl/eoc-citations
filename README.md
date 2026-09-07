@@ -1,7 +1,13 @@
-# hyprmuse
+<h1 align="center">
+  <img src="assets/logo.svg" width="84" height="84" alt="">
+  <br>
+  hyprmuse
+</h1>
 
-Random quotes from musicians, literary authors, poets and public-domain books,
-for your `hyprlock` screen.
+<p align="center">
+  Random quotes from musicians, literary authors, poets and public-domain books,
+  for your <code>hyprlock</code> screen.
+</p>
 
 Name a subject, hyprmuse harvests them from a fitting source into a local
 library, and prints a random quote on demand. Everything is stored offline, so
