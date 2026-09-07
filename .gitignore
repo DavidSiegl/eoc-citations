@@ -1,5 +1,5 @@
 .venv/
 __pycache__/
 *.pyc
-# legacy harvest output, now migrated to ~/.local/share/hyprmuse/
+# leftover scraped output; the library lives in ~/.local/share/hyprmuse/
 lyrics.json

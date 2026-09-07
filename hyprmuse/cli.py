@@ -1,13 +1,11 @@
 """Command line interface for hyprmuse."""
 
 import argparse
-import json
 import sys
-from pathlib import Path
 
 from . import config, library, render, select
 from .sources import AUTO_ORDER, REGISTRY, SourceError, get_source
-from .sources.base import Candidate, Item, Subject
+from .sources.base import Candidate
 
 
 def _err(msg: str) -> int:
@@ -157,38 +155,6 @@ def cmd_quote(args) -> int:
     return 0
 
 
-def cmd_migrate(args) -> int:
-    """Fold a legacy eoc-citations lyrics.json into the new store."""
-    from .sources.genius import clean_lines
-
-    path = Path(args.path)
-    if not path.exists():
-        return _err(f"{path} not found")
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except ValueError as exc:
-        return _err(f"could not parse {path}: {exc}")
-
-    items = []
-    for song in data.values():
-        lines = clean_lines(song.get("lyrics", ""))
-        if lines:
-            items.append(Item(lines=lines, work=song.get("title", ""),
-                              url=song.get("url", ""), atomic=False))
-    if not items:
-        return _err("no songs found to migrate")
-
-    subject = Subject(
-        source="genius", source_id=args.source_id, name=args.name,
-        domain="music", lang=args.lang,
-        url="https://genius.com/artists/Element-of-crime",
-        items=items,
-        attribution={"provider": "Genius", "note": "Migrated from lyrics.json."},
-    )
-    dest = library.save(subject)
-    print(f"Migrated {len(items)} songs for {args.name} -> {dest}")
-    return 0
-
 
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(
@@ -229,12 +195,6 @@ def build_parser() -> argparse.ArgumentParser:
     sp = sub.add_parser("sources", help="list available sources")
     sp.set_defaults(func=cmd_sources)
 
-    sp = sub.add_parser("migrate", help="import a legacy lyrics.json")
-    sp.add_argument("path", nargs="?", default="lyrics.json")
-    sp.add_argument("--name", default="Element of Crime")
-    sp.add_argument("--source-id", default="342499")
-    sp.add_argument("--lang", default="de")
-    sp.set_defaults(func=cmd_migrate)
 
     sp = sub.add_parser("quote", help="print a random quote (default command)")
     sp.add_argument("--lines", type=int, default=None,

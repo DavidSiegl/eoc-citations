@@ -26,12 +26,6 @@ prose passage) are quoted whole and word-wrapped.
 uv sync
 ```
 
-Import an existing `lyrics.json` from the old eoc-citations layout, if you have one:
-
-```bash
-uv run hyprmuse migrate lyrics.json
-```
-
 ## Usage
 
 ```bash
