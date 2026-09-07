@@ -13,6 +13,14 @@ dependencies = [
 [project.scripts]
 hyprmuse = "hyprmuse.cli:main"
 
+[dependency-groups]
+dev = ["pytest>=8.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
